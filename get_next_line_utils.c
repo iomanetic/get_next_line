@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 char	*ft_strdup(const char *s)
 {
 	char	*s_2;
-	size_t	len_s;
+	size_t  len_s;
 	size_t	i;
 
 	len_s = ft_strlen(s);
@@ -35,6 +35,7 @@ char	*ft_strdup(const char *s)
 		s_2[i] = s[i];
 		i++;
 	}
+    s_2[i] = '\0';
 	return (s_2);
 }
 
@@ -43,7 +44,7 @@ char	*ft_strchr(const char *s, int c)
 	char	*temp;
 
 	temp = (char *)s;
-	while (*temp != '\0')
+	while (*temp)
 	{
 		if (*temp == (char)c)
 			return (temp);
