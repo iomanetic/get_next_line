@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tyuuki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 18:59:53 by tyuuki            #+#    #+#             */
-/*   Updated: 2021/12/07 21:03:33 by tyuuki           ###   ########.fr       */
+/*   Created: 2021/12/07 19:21:08 by tyuuki            #+#    #+#             */
+/*   Updated: 2021/12/07 21:05:23 by tyuuki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_strchr(const char *s, int c)
 {
@@ -38,7 +38,7 @@ static char	*read_line(char *line)
 		i++;
 	if (line[i] == '\0')
 		return (NULL);
-	remainder = ft_substr(line, i + 1, ft_strlen(line) - i - 1);
+	remainder = ft_substr(line, i + 1, ft_strlen(line) - i);
 	if (*remainder == '\0')
 	{
 		free(remainder);
@@ -78,7 +78,7 @@ static char	*ft_write_remainder(int fd, char *buf, char *rem)
 
 char	*get_next_line(int fd)
 {
-	static char	*remainder;
+	static char	*remainder[FD_MAX];
 	char		*line;
 	char		*buf;
 
@@ -87,11 +87,11 @@ char	*get_next_line(int fd)
 	buf = (char *) malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
-	line = ft_write_remainder(fd, buf, remainder);
+	line = ft_write_remainder(fd, buf, remainder[fd]);
 	free(buf);
 	buf = NULL;
 	if (!line)
 		return (0);
-	remainder = read_line(line);
+	remainder[fd] = read_line(line);
 	return (line);
 }

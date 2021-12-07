@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tyuuki <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/07 19:00:44 by tyuuki            #+#    #+#             */
-/*   Updated: 2021/12/07 20:54:08 by tyuuki           ###   ########.fr       */
+/*   Created: 2021/12/07 19:21:33 by tyuuki            #+#    #+#             */
+/*   Updated: 2021/12/07 19:22:20 by tyuuki           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strdup(const char *s)
 {
@@ -28,7 +28,6 @@ char	*ft_strdup(const char *s)
 		s_2[i] = s[i];
 		i++;
 	}
-	s_2[i] = '\0';
 	return (s_2);
 }
 
@@ -89,7 +88,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_strdup(s));
 	if (len >= ft_strlen(s))
 		return (ft_strdup(&s[start]));
-	str = (char *) malloc(sizeof(char) * len + 1);
+	str = (char *) malloc(len + 1);
 	if (str == NULL)
 		return (NULL);
 	while (i <= len - 1 && s[i])
